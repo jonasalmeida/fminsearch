@@ -4,7 +4,24 @@
 
 ###Nonlinear regression in *javascript*.
 
-The same function is kept (that is where it was originally developed) at <http://jmat.googlecode.com>, see <http://jmat.googlecode.com/git/jmat.js>. The purpose is to develope a simple heuristic for non-linear regression that makes the most of javascript's functional style, and specifically of Map-Reduce patterns, while demanding the least from the browser. The algorithm development has a core regression thread that is elaborated through the use of Options (Opt). These options range from the basic of setting the display and controlling the number of iterations, all the way to configuring the output variable, setting the cost function and executing paralelized Genetic Algorithm style  
+The same function is kept (that is where it was originally developed) at <http://jmat.googlecode.com>, see <http://jmat.googlecode.com/git/jmat.js>. The purpose is to develope a simple heuristic for non-linear regression that makes the most of javascript's functional style, and specifically of Map-Reduce patterns, while demanding the least from the browser. The algorithm development has a core regression thread that is elaborated through the use of Options (Opt). These options range from the basic of setting the display and controlling the number of iterations, all the way to configuring the output variable, setting th cost function and executing paralelized Genetic Algorithm style.
+
+###Core algorithm
+
+The core algorithm is a variation on the golden rule of speding changes in teh values of the parameters that decrease the objective function (cost function), while reversing and slowing it down otherwiese. Accordingly, the core algorithm only really has two lines
+
+	for(var j=0;j<n;j++){ // take a step for each parameter
+		P1=cloneVector(P0);
+		P1[j]+=step[j];
+		if(funParm(P1)<funParm(P0)){ // parm value going in the righ direction					step[j]=1.2*step[j]; // go a little faster
+			P0=cloneVector(P1);
+		}
+		else{
+			step[j]=-(0.5*step[j]); // reverse and go slower
+		}	
+	} 
+	
+(...)
 
 ####Example 1 - the core thread
 
