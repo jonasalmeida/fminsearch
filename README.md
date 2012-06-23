@@ -13,7 +13,8 @@ The core algorithm is a variation on the golden rule of speding changes in teh v
 	for(var j=0;j<n;j++){ // take a step for each parameter
 		P1=cloneVector(P0);
 		P1[j]+=step[j];
-		if(funParm(P1)<funParm(P0)){ // parm value going in the righ direction					step[j]=1.2*step[j]; // go a little faster
+		if(funParm(P1)<funParm(P0)){ // parm value going in the righ direction
+			step[j]=1.2*step[j]; // go a little faster
 			P0=cloneVector(P1);
 		}
 		else{
