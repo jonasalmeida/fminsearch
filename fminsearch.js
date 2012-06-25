@@ -3,12 +3,12 @@ fminsearch=function(fun,Parm0,x,y,Opt){// fun = function(x,Parm)
 	//
 	// x = [32,37,42,47,52,57,62,67,72,77,82,87,92]
 	// y=[749,1525,1947,2201,2380,2537,2671,2758,2803,2943,3007,2979,2992]
-	// fun = function(x,P){return x.map(function(xi){return (P[0]+P[1]*(1-Math.exp(-P[2]*(xi-P[3]))))})}
-	// Parms=jmat.fminsearch(fun,[100,3000,1,30],x,y)
+	// fun = function(x,P){return x.map(function(xi){return (P[0]+1/(1/(P[1]*(xi-P[2]))+1/P[3]))})}
+	// Parms=jmat.fminsearch(fun,[100,30,10,5000],x,y)
 	//
 	// Opt is an object will all other parameters, from the objective function (cost function), to the 
 	// number of iterations, initial step vector and the display switch, for example
-	// Parms=jmat.fminsearch(fun,[100,3000,1,30],x,y,{maxIter:5000,display:false})
+	// Parms=jmat.fminsearch(fun,[100,30,10,5000],x,y),{maxIter:10000,display:false})
 	
 	if(!Opt){Opt={}};
 	if(!Opt.maxIter){Opt.maxIter=1000};
@@ -30,12 +30,12 @@ fminsearch=function(fun,Parm0,x,y,Opt){// fun = function(x,Parm)
 		for(var j=0;j<n;j++){ // take a step for each parameter
 			P1=cloneVector(P0);
 			P1[j]+=step[j];
-			if(funParm(P1)<funParm(P0)){ // parm value going in the righ direction
-				step[j]=1.2*step[j]; // go a little faster
+			if(funParm(P1)<funParm(P0)){ // if parm value going in the righ direction
+				step[j]=1.2*step[j]; // then go a little faster
 				P0=cloneVector(P1);
 			}
 			else{
-				step[j]=-(0.5*step[j]); // reverse and go slower
+				step[j]=-(0.5*step[j]); // otherwiese reverse and go slower
 			}	
 		}
 		if(Opt.display){if(i>(Opt.maxIter-10)){console.log(i+1,funParm(P0),P0)}}
