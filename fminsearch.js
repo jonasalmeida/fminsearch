@@ -1,14 +1,16 @@
 fminsearch=function(fun,Parm0,x,y,Opt){// fun = function(x,Parm)
 	// example
 	//
-	// x = [32,37,42,47,52,57,62,67,72,77,82,87,92]
-	// y=[749,1525,1947,2201,2380,2537,2671,2758,2803,2943,3007,2979,2992]
+	// x = [32,37,42,47,52,57,62,67,72,77,82,87,92];y=[749,1525,1947,2201,2380,2537,2671,2758,2803,2943,3007,2979,2992]
 	// fun = function(x,P){return x.map(function(xi){return (P[0]+1/(1/(P[1]*(xi-P[2]))+1/P[3]))})}
 	// Parms=jmat.fminsearch(fun,[100,30,10,5000],x,y)
 	//
+	// Another test:
+	// x=[32,37,42,47,52,57,62,67,72,77,82,87,92];y=[0,34,59,77,99,114,121,133,146,159,165,173,170];
+	//
 	// Opt is an object will all other parameters, from the objective function (cost function), to the 
 	// number of iterations, initial step vector and the display switch, for example
-	// Parms=jmat.fminsearch(fun,[100,30,10,5000],x,y),{maxIter:10000,display:false})
+	// Parms=fminsearch(fun,[100,30,10,5000],x,y,{maxIter:10000,display:false})
 	
 	if(!Opt){Opt={}};
 	if(!Opt.maxIter){Opt.maxIter=1000};
@@ -41,4 +43,12 @@ fminsearch=function(fun,Parm0,x,y,Opt){// fun = function(x,Parm)
 		if(Opt.display){if(i>(Opt.maxIter-10)){console.log(i+1,funParm(P0),P0)}}
 	}
 	return P0
+}
+
+fminsearch.load=function(src){ // script loading
+	// example: fminsearch.load('http://localhost:8888/jmat/jmat.js')
+	var s = document.createElement('script');
+	s.src = src;
+	document.head.appendChild(s);
+	s.parentElement.removeChild(s);
 }
