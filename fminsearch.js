@@ -42,8 +42,11 @@ fminsearch=function(fun,Parm0,x,y,Opt){// fun = function(x,Parm)
 		}
 		if(Opt.display){if(i>(Opt.maxIter-10)){console.log(i+1,funParm(P0),P0)}}
 	}
+	if (!!document.getElementById('plot')){ // if there is then use it
+		fminsearch.plot(x,y,fun(x,P0),P0);
+	}
 	return P0
-}
+};
 
 fminsearch.load=function(src){ // script loading
 	// example: fminsearch.load('http://localhost:8888/jmat/jmat.js')
@@ -51,4 +54,29 @@ fminsearch.load=function(src){ // script loading
 	s.src = src;
 	document.head.appendChild(s);
 	s.parentElement.removeChild(s);
+};
+
+fminsearch.plot=function(x,y,yp,Parms){ // ploting results using <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	// create Array in Google's format
+	var data = new google.visualization.DataTable();
+	data.addColumn('number', 'X');
+	data.addColumn('number', 'Observed');
+	data.addColumn('number', 'Model fit');
+	var n = x.length;
+	for (var i=0;i<n;i++){
+		data.addRow([x[i],y[i],yp[i]]);
+	};
+	//var chart = new google.visualization.ScatterChart(
+	var titulo='Model fitting';
+	if(!!Parms){titulo='Model parameters: '+Parms};
+	var chart = new google.visualization.ComboChart(
+		document.getElementById('plot'));
+	    chart.draw(data, {title: titulo,
+	                      width: 600, height: 400,
+	                      vAxis: {title: "Y", titleTextStyle: {color: "green"}},
+	                      hAxis: {title: "X", titleTextStyle: {color: "green"}},
+						  seriesType: "scatter",
+						  series: {1: {type: "line"}}}
+	              );
 }
+
