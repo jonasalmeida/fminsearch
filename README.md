@@ -1,14 +1,13 @@
 
-
 # fminsearch(fun,Parm0,x,y,Opt)
 
 ###Multiparametric nonlinear regression in *javascript*.
 
-The same function is kept (that is where it was originally developed) at <http://jmat.googlecode.com>, see <http://jmat.googlecode.com/git/jmat.js>. The purpose is to develope a simple heuristic for non-linear regression that makes the most of javascript's functional style, and specifically of Map-Reduce patterns, while demanding the least from the browser. The algorithm development has a core regression thread that is elaborated through the use of Options (Opt). These options range from the basic of setting the display and controlling the number of iterations, all the way to configuring the output variable, setting th cost function and executing paralelized Genetic Algorithm style.
+The same function is kept (that is where it was originally developed) at <http://jmat.googlecode.com>, see <https://jmat.googlecode.com/git/jmat.js>. The purpose is to develope a simple heuristic for non-linear regression that makes the most of javascript's functional style, and specifically of Map-Reduce patterns, while demanding the least from the browser. The algorithm development has a core regression thread that is elaborated through the use of Options (Opt). These options range from the basic of setting the display and controlling the number of iterations, all the way to configuring the output variable, setting th cost function and executing paralelized Genetic Algorithm style.
 
 ###Core algorithm
 
-The core algorithm is a variation on the golden rule of speding changes in teh values of the parameters that decrease the objective function (cost function), while reversing and slowing it down otherwiese. Accordingly, the core algorithm only really has two lines
+The core algorithm is a variation on the golden rule of speeding changes in the values of the parameters that decrease the objective function (cost function), while reversing and slowing it down otherwiese. Accordingly, the core algorithm only really has two lines
 
 ```
 for(var j=0;j<n;j++){ // take a step for each parameter
