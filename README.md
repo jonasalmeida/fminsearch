@@ -6,7 +6,7 @@ fminsearch(fun,Parm0,x,y,Opt)
 
 ### Multiparametric nonlinear regression in *javascript*.
 
-I developed this function originally at <http://jmat.googlecode.com>, i.e. <https://jmat.googlecode.com/git/jmat.js>, which Google has since discontinued so I moved it here 8 years ago. The purpose of *fminsearch* is to provide a simple heuristic for non-linear regression that makes the most of javascript's functional style, and specifically of Map-Reduce patterns, while demanding as little as possible from the browser. The algorithm development has a core regression thread with optional parameters (Opt). These options range from the basic of setting the display and controlling the number of iterations, all the way to configuring the output variable, setting the cost function and executing a paralelized Genetic Algorithm-style.
+I developed this function originally at <http://jmat.googlecode.com>, i.e. <https://jmat.googlecode.com/git/jmat.js>, which Google has since discontinued, so I moved it here 8 years ago. The purpose of *fminsearch* is to provide a simple heuristic for non-linear regression that makes the most of javascript's functional style, and specifically of Map-Reduce patterns, while demanding as little as possible from the browser, or from developers using it as part of their own work. The steepest descent proceedure has a core regression thread with optional parameters (Opt). These options range from the basic of setting the display and controlling the number of iterations, all the way to configuring the output variable, setting the cost function to applying a paralelized Genetic Algorithm-style penalty on divergent parameter vectors.
 
 ### Core algorithm
 
