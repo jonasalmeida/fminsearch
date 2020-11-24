@@ -4,7 +4,7 @@
 fminsearch(fun,Parm0,x,y,Opt)
 ```
 
-Source code at [https://github.com/jonasalmeida/fminsearch](https://jonasalmeida.github.io/fminsearch/), can be loaded into web application with
+Source code at [https://github.com/jonasalmeida/fminsearch](https://github.com/jonasalmeida/fminsearch), can be loaded into web application with
 ```html
 <script src="https://jonasalmeida.github.io/fminsearch/fminsearch.js"></script>
 ```
