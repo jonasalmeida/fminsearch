@@ -1,4 +1,5 @@
 // moving fminsearch to ES6 - under development!
+
 console.log(`fminsearch.mjs imported \n${Date()}`);
 
 // illustrative examples of fun
@@ -13,3 +14,4 @@ function logistic(x,P){
 export {
     logistic
 }
+
