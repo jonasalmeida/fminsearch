@@ -41,15 +41,15 @@ function fminsearch(fun,Parm0,x,y,Opt){// fun = function(x,Parm)
 	};
 	if(typeof(Opt.display)=='undefined'){Opt.display='console'};
 	if(!Opt.objFun){Opt.objFun=function(y,yp){return y.map(function(yi,i){return Math.pow((yi-yp[i]),2)}).reduce(function(a,b){return a+b})}} // SSD default objective function being minimized
-	let Model={}
+	let regModel={}
 	var ya,y0,yb,fP0,fP1;
 	var P0=[...Parm0],P1=[...Parm0]; // clone parameter array to decouple passing by reference
 	var n = P0.length;
 	var step=Opt.step;
 	function funEval(P){return Opt.objFun(y,fun(x,P))}//function evaluation for curent Parameter values to determine value of objective function, passed as a Opt parameter (Opt.objFun)
 	// silly multi-univariate walk
-	// assemble Model
-	let model={
+	// assemble regresssion Model
+	regModel={
 		Opt:Opt,
 		x:x,
 		y:y,
@@ -74,15 +74,15 @@ function fminsearch(fun,Parm0,x,y,Opt){// fun = function(x,Parm)
 			}
 			console.log(i+1,funEval(P0),P0)
 
-			if((i>10)&&(funEval(P1)==funEval(P0))){
+			if((i>10000)&&(funEval(P1)==funEval(P0))){
 				break
 			}
 		}
 			
 			//{if(i>(Opt.maxIter-10)){console.log(i+1,funEval(P0),P0)}}
 	}
-	model.parmf=P0 // final parameter values
-	return model
+	regModel.parmf=P0 // final parameter values
+	return regModel
 };
 
 // test execution
