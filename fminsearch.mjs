@@ -10,6 +10,12 @@ function logistic(x,P){
     )
 }
 
+function rational(x,P){
+    return x.map(
+		xi => P[0] + 1 / (1/(P[1]*(xi-P[2])) + 1/P[3])
+    )
+}
+
 // fminSearch
 
 function fminsearch(fun,Parm0,x,y,Opt){// fun = function(x,Parm)
